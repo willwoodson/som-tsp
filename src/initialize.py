@@ -20,7 +20,7 @@ def read_tsp(filename):
                 node_coord_start = i + 1
             i = i + 1
 
-        print("Problem with {} cities read.".format(dimension))
+        print("读取到 {} 个城市。".format(dimension))
 
         # 读取二维城市坐标
         f.seek(0)  # 从文件头开始读取

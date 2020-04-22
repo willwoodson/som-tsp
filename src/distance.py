@@ -1,15 +1,19 @@
 import numpy as np
 
-def select_closest(candidates, origin):
-    """Return the index of the closest candidate to a given point."""
-    return euclidean_distance(candidates, origin).argmin()
 
-def euclidean_distance(a, b):
-    """Return the array of distances of two numpy arrays of points."""
-    return np.linalg.norm(a - b, axis=1)
+def select_closest(network, city):
+    """返回与当前城市最近的神经元位置索引。"""
+
+    # 矩阵每个行向量求向量的2范数（欧式距离）
+    distances = np.linalg.norm(network - city, axis=1)
+    closest = distances.argmin()
+    return closest
+
 
 def route_distance(cities):
-    """Return the cost of traversing a route of cities in a certain order."""
-    points = cities[['x', 'y']]
-    distances = euclidean_distance(points, np.roll(points, 1, axis=0))
-    return np.sum(distances)
+    """返回以一定顺序遍历城市路线的总距离。"""
+    points = cities[["x", "y"]]
+    points_next = np.roll(points, 1, axis=0)  # 向下垂直滚动1
+    distances = np.linalg.norm(points - points_next, axis=1)
+    distance = np.sum(distances)
+    return distance

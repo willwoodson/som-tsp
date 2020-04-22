@@ -1,0 +1,18 @@
+NAME : t10
+COMMENT : 10 locations in Qatar
+COMMENT : Derived from National Imagery and Mapping Agency data
+TYPE : TSP
+DIMENSION : 10
+EDGE_WEIGHT_TYPE : EUC_2D
+NODE_COORD_SECTION
+1 64 96
+2 80 39
+3 69 23
+4 72 42
+5 48 67
+6 58 43
+7 81 34
+8 79 17
+9 30 23
+10 42 67
+EOF
