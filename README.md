@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ```bash
 cd som-tsp 
-python main.py assets/<instance>.tsp
+python src/main.py assets/<instance>.tsp
 ```
 
 som网络训练过程可视化，可查看图片 **data/som.png**，
