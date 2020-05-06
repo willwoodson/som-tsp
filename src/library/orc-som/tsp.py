@@ -94,3 +94,9 @@ class Tsp(object):
         fig_dir = "data/routes/" + self.tsp_name + "-" + str(self.distance) + ".png"
         plt.savefig(fig_dir, bbox_inches="tight", pad_inches=0, dpi=200)
         plt.close()
+
+    def compare(self, distence):
+        cities = pd.read_csv("data/optimal.csv")
+        a = int(cities[cities["tsp"] == self.tsp_name]["optimal_solution"])
+        b = round(((distence - a) / a) * 100, 2)
+        print("偏差为：{}%.".format(b))
