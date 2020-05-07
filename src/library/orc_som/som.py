@@ -16,9 +16,12 @@ class Som(object):
         self.radix = self.neuron_num / 10
         self.radix_limit = neuron_ratio / 10
         self.learning_rate = learning_rate
+        self.orc = 2
+        self.orc_a = 0.0001
 
         # self.t1 = 4000 / np.log10(self.radix)
         # self.t2 = 4000
+        # self.t3 = 5000
         # self.radix_0 = self.radix
         # self.learning_rate_0 = self.learning_rate
 
@@ -41,6 +44,10 @@ class Som(object):
             a["y"].min(),
             a["y"].max(),
         )
+
+        # self.radius_0 = (x_max + y_max - x_min - y_min) / (2 * 4)  # 初始门限半径
+        # self.radius = 0.0001
+
         neurons = np.ones((self.neuron_num, 2))
         a = int(self.neuron_num / 4)
         neurons[0:a, 0] = np.linspace(x_min, x_max, a)
@@ -64,6 +71,13 @@ class Som(object):
         # 矩阵每个行向量求向量的2范数（欧式距离）
         distances = np.linalg.norm(self.neurons - city, axis=1)
         self.winner_idx = distances.argmin()
+
+        # 计算orc系数
+        # distence = distances.min()
+        # self.orc = np.exp(((-(distence ** 2)) / (2 * self.radius ** 2)) + 0.5)
+        # if (1 - self.orc) < 0.01 and self.orc < 1:
+        #     print(self.orc)
+
         return self.winner_idx
 
     def get_neighborhood(self):
@@ -89,14 +103,17 @@ class Som(object):
         
         使得获胜神经元的优胜邻域内神经元像城市靠近
         """
-
-        self.neurons += self.gaussian * self.learning_rate * (city - self.neurons)
+        self.neurons += (
+            self.orc_a * self.gaussian * self.learning_rate * (city - self.neurons)
+        )
 
     def updae_rates(self, i):
         """衰减学习率 & 减少神经元基数（增强局部搜索能力）"""
 
         self.learning_rate = self.learning_rate * 0.99997
         self.radix = self.radix * 0.9997
+        self.orc = self.orc * 0.9997
+        self.orc_a = 2 - self.orc
 
         # self.radix = self.radix_0 * np.exp(-i / self.t1)
         # self.learning_rate = self.learning_rate_0 * np.exp(-i / self.t2)

@@ -3,9 +3,10 @@ import numpy as np
 import pandas as pd
 import time
 
-from library.som.som_tsp import SomTsp
+# from library.som.som_tsp import SomTsp
 
-# from library.orc_som.som_tsp import SomTsp
+from library.orc_som.som_tsp import SomTsp
+
 # from library.orcts_som.som_tsp import SomTsp
 
 
@@ -16,6 +17,8 @@ def initialize(step_num):
         step = "step" + str(i + 1)
         step_list.append(step)
         df[step] = 0
+    df["average"] = 0
+    df["deviation"] = 0
 
     df.to_csv("data/record.csv")
     return step_list

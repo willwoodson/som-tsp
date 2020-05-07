@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import time
 
-from library.som.tsp import Tsp
-from library.som.som import Som
+from library.orc_som.tsp import Tsp
+from library.orc_som.som import Som
 
 
 class SomTsp(object):
