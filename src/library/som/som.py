@@ -6,7 +6,10 @@ import matplotlib.animation as animation
 
 
 class Som(object):
-    def __init__(self, cities_normalized, neuron_ratio=8, learning_rate=0.3):
+    def __init__(self):
+        pass
+
+    def initialize(self, cities_normalized, neuron_ratio=8, learning_rate=0.3):
         self.cities_normalized = cities_normalized
         self.neuron_num = cities_normalized.shape[0] * neuron_ratio
         self.neuron_num = (self.neuron_num // 4) * 4

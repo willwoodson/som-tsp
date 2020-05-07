@@ -5,7 +5,10 @@ import matplotlib as mpl
 
 
 class Tsp(object):
-    def __init__(self, tsp_dir):
+    def __init__(self):
+        pass
+
+    def initialize(self, tsp_dir):
         self.tsp_dir = tsp_dir
         self.tsp_name = self.tsp_dir.split("/")[-1][:-4]
 

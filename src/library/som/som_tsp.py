@@ -7,24 +7,29 @@ from library.som.som import Som
 
 
 class SomTsp(object):
-    def __init__(self, tsp_dir, neuton_ratio=8, iterations=100000, learning_rate=0.3):
+    def __init__(self):
+        self.Tsp = Tsp()
+        self.Som = Som()
+
+    def operate(self, tsp_dir, neuton_ratio=8, iterations=100000, learning_rate=0.3):
+        self.initialize(tsp_dir, neuton_ratio, iterations, learning_rate)
+        self.train()
+        self.analyze()
+
+    def initialize(self, tsp_dir, neuton_ratio, iterations, learning_rate):
         self.tsp_dir = tsp_dir
         self.tsp_name = self.tsp_dir.split("/")[-1][:-4]
         self.neuton_ratio = neuton_ratio
         self.iterations = iterations
         self.learning_rate = learning_rate
 
-    def operate(self):
-        self.initialize()
-        self.train()
-        self.analyze()
-
-    def initialize(self):
-        self.Tsp = Tsp(self.tsp_dir)
+        self.Tsp.initialize(self.tsp_dir)
         self.cities_original = self.Tsp.read_tsp()  # 读取城市坐标
         self.cities_normalized = self.Tsp.normalize()  # 规范发城市坐标
 
-        self.Som = Som(self.cities_normalized, self.neuton_ratio, self.learning_rate,)
+        self.Som.initialize(
+            self.cities_normalized, self.neuton_ratio, self.learning_rate
+        )
         self.Som.generate_network()  # 生成神经网络
 
     def train(self):
@@ -57,6 +62,6 @@ class SomTsp(object):
             name="data/process/{}/{}.gif".format(self.tsp_name, self.tsp_name)
         )  # Som网络动画。
         route_idx = self.Som.get_route()  # Som网络计算的路径。
-        distence = self.Tsp.route_distance(route_idx)  # 路径长度
+        self.distence = self.Tsp.route_distance(route_idx)  # 路径长度
         self.Tsp.plot_route(route_idx)  # 绘制路径轨迹
-        self.Tsp.compare(distence)
+        self.Tsp.compare(self.distence)
