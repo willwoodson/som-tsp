@@ -54,7 +54,9 @@ for i in range(step_num):
     for j in range(5):
         t1 = time.time()
         print("-------------------" + tsp_name[j] + "--------------------")
-        SomTsp.operate("assets/" + tsp_name[j] + ".tsp", learning_rate=0.3)
+        SomTsp.operate(
+            "assets/" + tsp_name[j] + ".tsp", neuton_ratio=8, learning_rate=0.3
+        )
         record(i, SomTsp.tsp_name, SomTsp.distence)
         time_cost = round(time.time() - t1, 2)
         print("耗时：{} 秒".format(time_cost))

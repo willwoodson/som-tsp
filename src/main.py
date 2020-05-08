@@ -12,7 +12,7 @@ from library.orc_som.som_tsp import SomTsp
 
 # 直接运行模式
 tsp_name = ["st70", "pr76", "rat99", "ch130", "kroA200"]
-i = 0
+i = 2
 SomTsp = SomTsp()
 
 t0 = time.time()
