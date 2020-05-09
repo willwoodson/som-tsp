@@ -29,6 +29,11 @@ class Tsp(object):
 
             print("读取到 {} 个城市。".format(dimension))
 
+            # 创建禁忌表
+            self.dimension = dimension
+            self.tabu_list = np.zeros((dimension, 1))
+            self.tabu_length = dimension // 5
+
             # 读取二维城市坐标
             f.seek(0)  # 从文件头开始读取
             cities = pd.read_csv(
@@ -64,7 +69,35 @@ class Tsp(object):
     def select_city(self):
         """选择一个随机的城市(规范化后的)。"""
         cities = self.cities_normalized
-        city = cities.sample(1)[["x", "y"]].values
+
+        # 更新禁忌表
+        for i in range(self.dimension):
+            if self.tabu_list[i] != 0:
+                self.tabu_list[i] = self.tabu_list[i] - 1
+
+        # 禁忌搜索
+        i = int(self.dimension * np.random.sample(1))
+        flag = 0
+        for j in range(1000):
+            if self.tabu_list[i] == 0:
+                flag = 1
+                break
+            i = int(self.dimension * np.random.sample(1))
+
+        if flag == 0:
+            print("禁忌长度过长")
+            i = int(self.dimension * np.random.sample(1))
+
+        # while self.tabu_list[i] != 0:
+        #     i = int(self.dimension * np.random.sample(1))
+
+        self.tabu_list[i] = self.tabu_length
+
+        city = cities.iloc[i][["x", "y"]].values
+
+        # 随机取城市
+        # city = cities.sample(1)[["x", "y"]].values
+
         return city
 
     def route_distance(self, route_idx):

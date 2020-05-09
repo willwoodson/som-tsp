@@ -5,9 +5,9 @@ import time
 
 # from library.som.som_tsp import SomTsp
 
-from library.orc_som.som_tsp import SomTsp
+# from library.orc_som.som_tsp import SomTsp
 
-# from library.orcts_som.som_tsp import SomTsp
+from library.orcts_som.som_tsp import SomTsp
 
 
 # 直接运行模式
