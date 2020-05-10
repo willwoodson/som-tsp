@@ -35,7 +35,13 @@ class SomTsp(object):
     def train(self):
         for i in range(self.iterations):
             if not i % 100:
-                print("\t> 迭代次数： {}/{}".format(i, self.iterations), end="\r")
+                print(
+                    "\t>迭代次数： {}/{}".format(i, self.iterations), end="\r",
+                )
+
+            # if self.Tsp.tabu_length == 90:
+            #     print("ok")
+            #     exit(0)
 
             # 绘制神经元轨迹
             if not i % 1000:

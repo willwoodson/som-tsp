@@ -1,11 +1,18 @@
-import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import time
+from matplotlib import pyplot as plt
+from matplotlib import animation
+
+fig = plt.figure()
+data = np.random.random((255, 255))
+im = plt.imshow(data, cmap='gray')
 
 
-cities = pd.read_csv("data/optimal.csv")
-print(cities)
-a = int(cities[cities["tsp"] == "st70"]["optimal_solution"])
-print(a)
+# animation function. This is called sequentially
+def animate(i):
+    data = np.random.random((255, 255))
+    im.set_array(data)
+    return [im]
+
+
+anim = animation.FuncAnimation(fig, animate, frames=200, interval=60, blit=True)
+plt.show()

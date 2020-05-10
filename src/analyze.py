@@ -3,11 +3,11 @@ import numpy as np
 import pandas as pd
 import time
 
-# from library.som.som_tsp import SomTsp
+from library.som.som_tsp import SomTsp
 
 # from library.orc_som.som_tsp import SomTsp
 
-from library.orcts_som.som_tsp import SomTsp
+# from library.orcts_som.som_tsp import SomTsp
 
 
 def initialize(step_num):

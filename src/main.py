@@ -3,15 +3,15 @@ import numpy as np
 import pandas as pd
 import time
 
-# from library.som.som_tsp import SomTsp
+from library.som.som_tsp import SomTsp
 
 # from library.orc_som.som_tsp import SomTsp
 
-from library.orcts_som.som_tsp import SomTsp
+# from library.orcts_som.som_tsp import SomTsp
 
 
 # 直接运行模式
-tsp_name = ["st70", "pr76", "rat99", "ch130", "kroA200"]
+tsp_name = ["st70", "pr76", "rat99", "ch130", "kroA200", "u2152"]
 i = 2
 SomTsp = SomTsp()
 

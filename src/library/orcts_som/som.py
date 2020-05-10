@@ -150,7 +150,7 @@ class Som(object):
             print("-------------------------------------------")
             print("半径已完全衰减，总迭代次数为：{}".format(i),)
             complete = 1
-        if self.learning_rate < 0.001:
+        if self.learning_rate < 0.01:
             print("-------------------------------------------")
             print("学习率已完全降低，总迭代次数为：{}".format(i),)
             complete = 1
