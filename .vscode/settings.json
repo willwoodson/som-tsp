@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\will\\.conda\\envs\\lab\\python.exe",
+    "python.pythonPath": "/Users/will/anaconda3/bin/python",
     "python.formatting.provider": "black"
 }
