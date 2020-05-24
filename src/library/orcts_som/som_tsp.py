@@ -25,7 +25,7 @@ class SomTsp(object):
 
         self.Tsp.initialize(self.tsp_dir)
         self.cities_original = self.Tsp.read_tsp()  # 读取城市坐标
-        self.cities_normalized = self.Tsp.normalize()  # 规范发城市坐标
+        self.cities_normalized = self.Tsp.normalize()  # 规范化城市坐标
 
         self.Som.initialize(
             self.cities_normalized, self.neuton_ratio, self.learning_rate

@@ -32,7 +32,7 @@ class Tsp(object):
             # 创建禁忌表
             self.dimension = dimension
             self.tabu_list = np.zeros((dimension, 1))
-            self.tabu_length_0 = dimension // 5
+            self.tabu_length_0 = dimension // 4
             self.tabu_length = self.tabu_length_0
 
             # 读取二维城市坐标
@@ -97,7 +97,7 @@ class Tsp(object):
         city = cities.iloc[i][["x", "y"]].values
 
         # 禁忌长度衰减
-        self.tabu_length_0 = self.tabu_length_0 * 0.9997
+        self.tabu_length_0 = self.tabu_length_0 * 0.97
         self.tabu_length = int(self.tabu_length_0)
 
         # 随机取城市

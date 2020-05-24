@@ -1,18 +1,34 @@
+import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import animation
+import math
 
-fig = plt.figure()
-data = np.random.random((255, 255))
-im = plt.imshow(data, cmap='gray')
+x = np.linspace(0,20000,10000)
 
+plt.figure()
 
-# animation function. This is called sequentially
-def animate(i):
-    data = np.random.random((255, 255))
-    im.set_array(data)
-    return [im]
+plt.subplot(2,2,1) # 2行2列 第1个
+t = 1000
+y = 0.34*(1-np.exp(-x/t))
+plt.plot(x,y,color='red',linewidth=3.0,linestyle='-')
+plt.title('t = 1000')
 
 
-anim = animation.FuncAnimation(fig, animate, frames=200, interval=60, blit=True)
+plt.subplot(2,2,2) 
+t = 2000
+y = 0.34*(1-np.exp(-x/t))
+plt.plot(x,y,color='red',linewidth=3.0,linestyle='-')
+plt.title('t = 2000')
+
+plt.subplot(2,2,3) 
+t = 3000
+y = 0.34*(1-np.exp(-x/t))
+plt.plot(x,y,color='red',linewidth=3.0,linestyle='-')
+# plt.title('t = 3000')
+
+plt.subplot(2,2,4) 
+t = 4000
+y = 0.34*(1-np.exp(-x/t))
+plt.plot(x,y,color='red',linewidth=3.0,linestyle='-')
+# plt.title('t = 4000')
+
 plt.show()

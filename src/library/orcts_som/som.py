@@ -105,11 +105,11 @@ class Som(object):
         
         使得获胜神经元的优胜邻域内神经元像城市靠近
         """
-        # self.neurons += (
-        #     self.orc * self.gaussian * self.learning_rate * (city - self.neurons)
-        # )
+        self.neurons += (
+            self.orc * self.gaussian * self.learning_rate * (city - self.neurons)
+        )
 
-        self.neurons += self.gaussian * self.learning_rate * (city - self.neurons)
+        # self.neurons += self.gaussian * self.learning_rate * (city - self.neurons)
 
     def updae_rates(self, i):
         """衰减学习率 & 减少神经元基数（增强局部搜索能力）"""
